@@ -101,25 +101,51 @@ BOOL isNewValueStarts = NO;
     NSLog(@"[Multiplication]: %g × %g = %g", lastValue, currentValue, resultValue);
 }
 
+- (BOOL) isError:(CGFloat)value {
+    if (value == 0) {
+        _resultLabel.text = @"Error";
+        isNewValueStarts = YES;
+        
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 - (void) handleDivision {
     CGFloat currentValue = [_resultLabel.text floatValue];
-    CGFloat resultValue = lastValue / currentValue;
-    _resultLabel.text = [NSString stringWithFormat: @"%g", resultValue];
-    NSLog(@"[Division]: %g ÷ %g = %g", lastValue, currentValue, resultValue);
+    
+    if (![self isError: currentValue]) {
+        CGFloat resultValue = lastValue / currentValue;
+        _resultLabel.text = [NSString stringWithFormat: @"%g", resultValue];
+        NSLog(@"[Division]: %g ÷ %g = %g", lastValue, currentValue, resultValue);
+    } else {
+        NSLog(@"[Division]: %g ÷ %g = Error", lastValue, currentValue);
+    }
 }
 
 - (void) handleMod {
     CGFloat currentValue = [_resultLabel.text floatValue];
-    CGFloat resultValue = (float)((int)lastValue % (int)currentValue);
-    _resultLabel.text = [NSString stringWithFormat: @"%g", resultValue];
-    NSLog(@"[Mod]: %g %% %g = %g", lastValue, currentValue, resultValue);
+    
+    if (![self isError: currentValue]) {
+        CGFloat resultValue = (float)((int)lastValue % (int)currentValue);
+        _resultLabel.text = [NSString stringWithFormat: @"%g", resultValue];
+        NSLog(@"[Mod]: %g %% %g = %g", lastValue, currentValue, resultValue);
+    } else {
+        NSLog(@"[Mod]: %g %% %g = Error", lastValue, currentValue);
+    }
 }
 
 - (void) handleDiv {
     CGFloat currentValue = [_resultLabel.text floatValue];
-    NSInteger resultValue = lastValue / currentValue;
-    _resultLabel.text = [NSString stringWithFormat: @"%ld", (long)resultValue];
-    NSLog(@"[Div]: %g // %g = %ld", lastValue, currentValue, (long)resultValue);
+    
+    if (![self isError: currentValue]) {
+        NSInteger resultValue = lastValue / currentValue;
+        _resultLabel.text = [NSString stringWithFormat: @"%ld", (long)resultValue];
+        NSLog(@"[Div]: %g // %g = %ld", lastValue, currentValue, (long)resultValue);
+    } else {
+        NSLog(@"[Div]: %g // %g = Error", lastValue, currentValue);
+    }
 }
 
 // MARK: - Calcualte
