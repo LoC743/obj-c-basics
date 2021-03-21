@@ -41,6 +41,9 @@
                                                 <state key="normal" title="mod">
                                                     <color key="titleColor" red="0.89019607840000003" green="0.84705882349999995" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="operationButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iS9-Gs-U38"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nAE-U5-fhb">
                                                 <rect key="frame" x="98" y="33.5" width="70" height="70"/>
@@ -53,6 +56,9 @@
                                                 <state key="normal" title="div">
                                                     <color key="titleColor" red="0.89019607840000003" green="0.84705882349999995" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="operationButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MOl-hX-0rO"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zFj-Fq-Ylj">
                                                 <rect key="frame" x="196" y="33.5" width="70" height="70"/>

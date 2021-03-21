@@ -20,6 +20,8 @@ typedef enum Operations: NSUInteger {
     subtraction,
     multiplication,
     division,
+    mod,
+    intDiv,
     none
 } Operations;
 
@@ -67,6 +69,10 @@ BOOL isNewValueStarts = NO;
         currentOperation = multiplication;
     } else if ([sender.titleLabel.text isEqual: @"÷"]) {
         currentOperation = division;
+    } else if ([sender.titleLabel.text isEqual: @"mod"]) {
+        currentOperation = mod;
+    } else if ([sender.titleLabel.text isEqual: @"div"]) {
+        currentOperation = intDiv;
     } else {
         currentOperation = none;
     }
@@ -75,23 +81,45 @@ BOOL isNewValueStarts = NO;
 // MARK: - Handle operations
 
 - (void) handleAddition {
-    CGFloat resultValue = lastValue + [_resultLabel.text floatValue];
+    CGFloat currentValue = [_resultLabel.text floatValue];
+    CGFloat resultValue = lastValue + currentValue;
     _resultLabel.text = [NSString stringWithFormat: @"%g", resultValue];
+    NSLog(@"[Addition]: %g + %g = %g", lastValue, currentValue, resultValue);
 }
 
-- (void) handleStutraction {
-    CGFloat resultValue = lastValue - [_resultLabel.text floatValue];
+- (void) handleSubtraction {
+    CGFloat currentValue = [_resultLabel.text floatValue];
+    CGFloat resultValue = lastValue - currentValue;
     _resultLabel.text = [NSString stringWithFormat: @"%g", resultValue];
+    NSLog(@"[Subtraction]: %g - %g = %g", lastValue, currentValue, resultValue);
 }
 
 - (void) handleMultiplication {
-    CGFloat resultValue = lastValue * [_resultLabel.text floatValue];
+    CGFloat currentValue = [_resultLabel.text floatValue];
+    CGFloat resultValue = lastValue * currentValue;
     _resultLabel.text = [NSString stringWithFormat: @"%g", resultValue];
+    NSLog(@"[Multiplication]: %g × %g = %g", lastValue, currentValue, resultValue);
 }
 
 - (void) handleDivision {
-    CGFloat resultValue = lastValue / [_resultLabel.text floatValue];
+    CGFloat currentValue = [_resultLabel.text floatValue];
+    CGFloat resultValue = lastValue / currentValue;
     _resultLabel.text = [NSString stringWithFormat: @"%g", resultValue];
+    NSLog(@"[Division]: %g ÷ %g = %g", lastValue, currentValue, resultValue);
+}
+
+- (void) handleMod {
+    CGFloat currentValue = [_resultLabel.text floatValue];
+    CGFloat resultValue = (float)((int)lastValue % (int)currentValue);
+    _resultLabel.text = [NSString stringWithFormat: @"%g", resultValue];
+    NSLog(@"[Mod]: %g %% %g = %g", lastValue, currentValue, resultValue);
+}
+
+- (void) handleDiv {
+    CGFloat currentValue = [_resultLabel.text floatValue];
+    NSInteger resultValue = lastValue / currentValue;
+    _resultLabel.text = [NSString stringWithFormat: @"%ld", (long)resultValue];
+    NSLog(@"[Div]: %g // %g = %ld", lastValue, currentValue, (long)resultValue);
 }
 
 // MARK: - Calcualte
@@ -101,13 +129,19 @@ BOOL isNewValueStarts = NO;
             [self handleAddition];
             break;
         case subtraction:
-            [self handleStutraction];
+            [self handleSubtraction];
             break;
         case multiplication:
             [self handleMultiplication];
             break;
         case division:
             [self handleDivision];
+            break;
+        case mod:
+            [self handleMod];
+            break;
+        case intDiv:
+            [self handleDiv];
             break;
         case none:
             break;
