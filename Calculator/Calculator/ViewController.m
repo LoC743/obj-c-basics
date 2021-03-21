@@ -55,26 +55,43 @@ BOOL isNewValueStarts = NO;
 
 // MARK: - Operation Actions
 
-- (IBAction)addOperationTapped:(UIButton *)sender {
-    currentOperation = addition;
+- (IBAction)operationButtonTapped:(UIButton *)sender {
     isNewValueStarts = YES;
     lastValue = [_resultLabel.text floatValue];
-}
-
-- (IBAction)subtractionOperationTapped:(UIButton *)sender {
-}
-
-- (IBAction)multiplicationOperationTapped:(UIButton *)sender {
-}
-
-- (IBAction)divisionOperationTapped:(UIButton *)sender {
+    
+    if ([sender.titleLabel.text isEqual: @"+"]) {
+        currentOperation = addition;
+    } else if ([sender.titleLabel.text isEqual: @"-"]) {
+        currentOperation = subtraction;
+    } else if ([sender.titleLabel.text isEqual: @"×"]) {
+        currentOperation = multiplication;
+    } else if ([sender.titleLabel.text isEqual: @"÷"]) {
+        currentOperation = division;
+    } else {
+        currentOperation = none;
+    }
 }
 
 // MARK: - Handle operations
 
 - (void) handleAddition {
     CGFloat resultValue = lastValue + [_resultLabel.text floatValue];
-    _resultLabel.text = [NSString stringWithFormat: @"%f", resultValue];
+    _resultLabel.text = [NSString stringWithFormat: @"%g", resultValue];
+}
+
+- (void) handleStutraction {
+    CGFloat resultValue = lastValue - [_resultLabel.text floatValue];
+    _resultLabel.text = [NSString stringWithFormat: @"%g", resultValue];
+}
+
+- (void) handleMultiplication {
+    CGFloat resultValue = lastValue * [_resultLabel.text floatValue];
+    _resultLabel.text = [NSString stringWithFormat: @"%g", resultValue];
+}
+
+- (void) handleDivision {
+    CGFloat resultValue = lastValue / [_resultLabel.text floatValue];
+    _resultLabel.text = [NSString stringWithFormat: @"%g", resultValue];
 }
 
 // MARK: - Calcualte
@@ -84,10 +101,13 @@ BOOL isNewValueStarts = NO;
             [self handleAddition];
             break;
         case subtraction:
+            [self handleStutraction];
             break;
         case multiplication:
+            [self handleMultiplication];
             break;
         case division:
+            [self handleDivision];
             break;
         case none:
             break;
