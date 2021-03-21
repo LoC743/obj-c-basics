@@ -148,4 +148,18 @@ BOOL isNewValueStarts = NO;
     }
 }
 
+// MARK: (Action) Additional buttons
+
+- (IBAction)plusMinusButtonTapped:(UIButton *)sender {
+    if (![_resultLabel.text isEqual: @"0"]) {
+        CGFloat value = [_resultLabel.text floatValue];
+        value = -value;
+        _resultLabel.text = [NSString stringWithFormat: @"%g", value];
+    }
+}
+
+- (IBAction)commaButtonTapped:(UIButton *)sender {
+}
+
+
 @end
