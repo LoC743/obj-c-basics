@@ -45,7 +45,7 @@ BOOL isNewValueStarts = NO;
         _resultLabel.text = sender.titleLabel.text;
         isNewValueStarts = NO;
     } else {
-        _resultLabel.text = [_resultLabel.text stringByAppendingString:sender.titleLabel.text];
+        _resultLabel.text = [_resultLabel.text stringByAppendingString: sender.titleLabel.text];
     }
 }
 
@@ -159,7 +159,11 @@ BOOL isNewValueStarts = NO;
 }
 
 - (IBAction)commaButtonTapped:(UIButton *)sender {
+    NSString *lastChar = [_resultLabel.text substringFromIndex:
+                          [_resultLabel.text length] - 1];
+    if (![lastChar isEqual: @"."]) {
+        _resultLabel.text = [_resultLabel.text stringByAppendingString: @"."];
+    }
 }
-
 
 @end
