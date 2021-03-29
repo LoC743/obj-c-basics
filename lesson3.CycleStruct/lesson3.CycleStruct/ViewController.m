@@ -16,10 +16,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self loop];
+    [self printLoop];
+    [self printStruct];
 }
 
-- (void)loop {
+- (void)printLoop {
     NSArray *stringArray = @[@"Lorem", @"ipsum", @"dolor", @"sit", @"amet,", @"consectetur", @"adipiscing", @"elit.", @"Vivamus", @"efficitur."];
     
     // MARK: - For in loop
@@ -43,6 +44,45 @@
         
         ++index;
     }
+}
+
+
+// MARK: - struct Human
+typedef enum Gender {
+    male,
+    female,
+} Gender;
+
+-(NSString *) genderToString:(Gender) gender {
+    switch (gender) {
+        case male:
+            return @"Male";
+        case female:
+            return @"Female";
+    }
+}
+
+struct Human {
+    NSString *name;
+    NSInteger age;
+    Gender gender;
+};
+typedef struct Human Human;
+
+-(void) printHuman:(Human) human {
+    NSLog(@"\n[Human]\nName: %@\nAge: %ld\nGender: %@\n",
+          human.name, human.age, [self genderToString: human.gender]);
+}
+
+-(void) printStruct {
+    Human ivan = { @"Ivan", 25, male };
+    Human eva = { @"Eva", 17, female };
+    Human johnny = { @"Johnny", 24, male };
+    johnny.age = 34;
+    
+    [self printHuman: ivan];
+    [self printHuman: eva];
+    [self printHuman: johnny];
 }
 
 
