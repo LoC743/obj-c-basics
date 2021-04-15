@@ -197,6 +197,11 @@ BOOL isNewValueStarts = NO;
 - (void)dealloc {
     NSLog(@"Deallocating View Controller.");
     [_resultLabel release];
+    
+    for (UIButton *button in _buttonCollection) {
+        [button release];
+    }
+    
     [_buttonCollection release];
     [super dealloc];
 }
