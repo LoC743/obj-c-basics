@@ -17,6 +17,37 @@
     [super viewDidLoad];
     
     [self gcd];
+    [self operations];
+}
+
+- (void) operations {
+    NSUInteger size = 10;
+    
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    [queue addOperationWithBlock: ^{
+        NSArray *bubbleArray = generateArray(size);
+        NSLog(@"[Bubble Array]: %@", bubbleArray);
+        NSLog(@"[Bubble sort]: %@", bubbleSort(bubbleArray));
+    }];
+    
+    [queue addOperationWithBlock: ^{
+        NSArray *shakerArray = generateArray(size);
+        NSLog(@"[Shaker Array]: %@", shakerArray);
+        NSLog(@"[Shaker sort]: %@", shakerSort(shakerArray));
+    }];
+    
+    [queue addOperationWithBlock: ^{
+        NSArray *selectionArray = generateArray(size);
+        NSLog(@"[Selection Array]: %@", selectionArray);
+        NSLog(@"[Selection sort]: %@", selectionSort(selectionArray));
+    }];
+    
+    [queue addOperationWithBlock: ^{
+        NSArray *gnomeArray = generateArray(size);
+        NSLog(@"[Gnome Array]: %@", gnomeArray);
+        NSLog(@"[Gnome sort]: %@", gnomeSort(gnomeArray));
+    }];
 }
 
 - (void) gcd {
@@ -51,7 +82,7 @@
 
 NSArray *(^generateArray)(NSUInteger size) = ^NSMutableArray *(NSUInteger size) {
     NSMutableArray *array = [NSMutableArray new];
-    for (int i = 0; i < size; i++)
+    for (NSInteger i = 0; i < size; i++)
         [array addObject: [NSNumber numberWithInt: arc4random() % 100]];
     
     return [array copy];
