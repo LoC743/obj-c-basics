@@ -16,23 +16,37 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSUInteger size = 10;
-    NSArray *bubbleArray = generateArray(size);
-    NSArray *shakerArray = generateArray(size);
-    NSArray *selectionArray = generateArray(size);
-    NSArray *gnomeArray = generateArray(size);
+    [self gcd];
+}
 
-    NSLog(@"Array: %@", bubbleArray);
-    NSLog(@"[Bubble sort]: %@", bubbleSort(bubbleArray));
+- (void) gcd {
+    NSUInteger size = 10;
     
-    NSLog(@"Array: %@", shakerArray);
-    NSLog(@"[Shaker sort]: %@", shakerSort(shakerArray));
+    dispatch_queue_t queue = dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0);
+
+    dispatch_async(queue, ^{
+        NSArray *bubbleArray = generateArray(size);
+        NSLog(@"[Bubble Array]: %@", bubbleArray);
+        NSLog(@"[Bubble sort]: %@", bubbleSort(bubbleArray));
+    });
     
-    NSLog(@"Array: %@", selectionArray);
-    NSLog(@"[Selection sort]: %@", selectionSort(selectionArray));
+    dispatch_async(queue, ^{
+        NSArray *shakerArray = generateArray(size);
+        NSLog(@"[Shaker Array]: %@", shakerArray);
+        NSLog(@"[Shaker sort]: %@", shakerSort(shakerArray));
+    });
     
-    NSLog(@"Array: %@", gnomeArray);
-    NSLog(@"[Gnome sort]: %@", gnomeSort(gnomeArray));
+    dispatch_async(queue, ^{
+        NSArray *selectionArray = generateArray(size);
+        NSLog(@"[Selection Array]: %@", selectionArray);
+        NSLog(@"[Selection sort]: %@", selectionSort(selectionArray));
+    });
+    
+    dispatch_async(queue, ^{
+        NSArray *gnomeArray = generateArray(size);
+        NSLog(@"[Gnome Array]: %@", gnomeArray);
+        NSLog(@"[Gnome sort]: %@", gnomeSort(gnomeArray));
+    });
 }
 
 NSArray *(^generateArray)(NSUInteger size) = ^NSMutableArray *(NSUInteger size) {
