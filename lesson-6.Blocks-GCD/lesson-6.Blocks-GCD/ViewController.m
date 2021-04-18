@@ -15,8 +15,126 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    NSUInteger size = 10;
+    NSArray *bubbleArray = generateArray(size);
+    NSArray *shakerArray = generateArray(size);
+    NSArray *selectionArray = generateArray(size);
+    NSArray *gnomeArray = generateArray(size);
+
+    NSLog(@"Array: %@", bubbleArray);
+    NSLog(@"[Bubble sort]: %@", bubbleSort(bubbleArray));
+    
+    NSLog(@"Array: %@", shakerArray);
+    NSLog(@"[Shaker sort]: %@", shakerSort(shakerArray));
+    
+    NSLog(@"Array: %@", selectionArray);
+    NSLog(@"[Selection sort]: %@", selectionSort(selectionArray));
+    
+    NSLog(@"Array: %@", gnomeArray);
+    NSLog(@"[Gnome sort]: %@", gnomeSort(gnomeArray));
 }
 
+NSArray *(^generateArray)(NSUInteger size) = ^NSMutableArray *(NSUInteger size) {
+    NSMutableArray *array = [NSMutableArray new];
+    for (int i = 0; i < size; i++)
+        [array addObject: [NSNumber numberWithInt: arc4random() % 100]];
+    
+    return [array copy];
+};
+
+
+NSArray *(^bubbleSort)(NSArray *array) = ^NSArray *(NSArray *array) {
+    NSInteger length = array.count;
+    NSMutableArray *result = [[NSMutableArray alloc] initWithArray:array];
+    
+    for (NSInteger i = 0; i + 1 < length; ++i) {
+        for (NSInteger j = 0; j + 1 < length - i; ++j) {
+            if ([result[j + 1] intValue] < [result[j] intValue]) {
+                [result exchangeObjectAtIndex:j withObjectAtIndex:j + 1];
+            }
+        }
+    }
+    
+    return [result copy];
+};
+
+NSArray *(^shakerSort)(NSArray *array) = ^NSArray *(NSArray *array) {
+    NSInteger left = 0;
+    NSInteger right = [array count] - 1;
+    NSMutableArray *result = [[NSMutableArray alloc] initWithArray:array];
+    
+    while(left <= right) {
+        for (NSInteger i = right; i > left; --i) {
+            if ([result[i - 1] intValue] > [result[i] intValue]) {
+                [result exchangeObjectAtIndex:i - 1 withObjectAtIndex:i];
+            }
+        }
+        ++left;
+        for (NSInteger i = left; i < right; ++i) {
+            if ([result[i] intValue] > [result[i + 1] intValue]) {
+                [result exchangeObjectAtIndex:i withObjectAtIndex:i + 1];
+            }
+        }
+        --right;
+    }
+    
+    return [result copy];
+};
+
+NSArray *(^insertionSort)(NSArray *array) = ^NSArray *(NSArray *array) {
+    NSInteger length = [array count];
+    NSMutableArray *result = [[NSMutableArray alloc] initWithArray:array];
+    
+    for (NSInteger i = 1; i < length; ++i) {
+        NSNumber *item = result[i];
+        NSInteger j = i;
+        
+        while (j > 0 && [array[j - 1] intValue] > [item intValue]) {
+            result[j] = result[j - 1];
+            --j;
+        }
+        
+        result[j] = item;
+    }
+    
+    return [result copy];
+};
+
+NSArray *(^selectionSort)(NSArray *array) = ^NSArray *(NSArray *array) {
+    NSInteger length = [array count];
+    NSMutableArray *result = [[NSMutableArray alloc] initWithArray:array];
+
+    for (NSInteger i = 0; i < length - 1; ++i) {
+        NSInteger minIndex = i;
+        for (NSInteger j = i + 1; j < length; ++j) {
+            if ([result[j] intValue] < [result[minIndex] intValue]) {
+                minIndex = j;
+            }
+        }
+        [result exchangeObjectAtIndex:minIndex withObjectAtIndex:i];
+    }
+    
+    return [result copy];
+};
+
+NSArray *(^gnomeSort)(NSArray *array) = ^NSArray *(NSArray *array) {
+    NSInteger length = [array count];
+    NSMutableArray *result = [[NSMutableArray alloc] initWithArray:array];
+    NSInteger index = 0;
+    
+    while (index < length) {
+        if (index == 0)
+            ++index;
+        if ([result[index] intValue] >= [result[index - 1] intValue])
+            ++index;
+        else {
+            [result exchangeObjectAtIndex:index withObjectAtIndex:index - 1];
+            --index;
+        }
+    }
+    
+    return [result copy];
+};
 
 @end
