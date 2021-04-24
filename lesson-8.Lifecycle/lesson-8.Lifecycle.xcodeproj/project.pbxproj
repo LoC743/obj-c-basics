@@ -13,6 +13,7 @@
 		8A1CCB8626344928006B9B40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A1CCB8526344928006B9B40 /* Assets.xcassets */; };
 		8A1CCB8926344928006B9B40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A1CCB8726344928006B9B40 /* LaunchScreen.storyboard */; };
 		8A1CCB8C26344928006B9B40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CCB8B26344928006B9B40 /* main.m */; };
+		8A1CCB972634527E006B9B40 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CCB962634527E006B9B40 /* SecondViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		8A1CCB8826344928006B9B40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A1CCB8A26344928006B9B40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A1CCB8B26344928006B9B40 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8A1CCB952634527E006B9B40 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		8A1CCB962634527E006B9B40 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,7 @@
 		8A1CCB7826344928006B9B40 /* lesson-8.Lifecycle */ = {
 			isa = PBXGroup;
 			children = (
+				8A1CCB9426345264006B9B40 /* SecondViewController */,
 				8A1CCB7926344928006B9B40 /* AppDelegate.h */,
 				8A1CCB7A26344928006B9B40 /* AppDelegate.m */,
 				8A1CCB7F26344928006B9B40 /* ViewController.h */,
@@ -69,6 +73,15 @@
 				8A1CCB8B26344928006B9B40 /* main.m */,
 			);
 			path = "lesson-8.Lifecycle";
+			sourceTree = "<group>";
+		};
+		8A1CCB9426345264006B9B40 /* SecondViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8A1CCB952634527E006B9B40 /* SecondViewController.h */,
+				8A1CCB962634527E006B9B40 /* SecondViewController.m */,
+			);
+			path = SecondViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +153,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A1CCB972634527E006B9B40 /* SecondViewController.m in Sources */,
 				8A1CCB8126344928006B9B40 /* ViewController.m in Sources */,
 				8A1CCB7B26344928006B9B40 /* AppDelegate.m in Sources */,
 				8A1CCB8C26344928006B9B40 /* main.m in Sources */,

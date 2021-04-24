@@ -6,6 +6,7 @@
 //
 
 #import "ViewController.h"
+#import "SecondViewController.h"
 
 @interface ViewController ()
 
@@ -15,8 +16,37 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    NSLog(@"[ViewController]: viewDidLoad");
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"[ViewController]: viewWillAppear");
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    NSLog(@"[ViewController]: viewDidAppear");
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    NSLog(@"[ViewController]: viewWillDisappear");
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    NSLog(@"[ViewController]: viewDidDisappear");
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    NSLog(@"[ViewController]: viewWillTransitionToSize");
+}
+
+- (IBAction)nextVCButtonTapped:(id)sender {
+    SecondViewController *vc = [[SecondViewController alloc] init];
+    [self presentViewController:vc animated:YES completion:nil];
+}
 
 @end
